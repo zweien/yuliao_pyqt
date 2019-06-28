@@ -37,7 +37,7 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
         # self.pushButton.clicked.connect(self.fun)
         self.toolButton.clicked.connect(self.choose_dir)
         self.pushButton_read.clicked.connect(self.generate)
-        self.pushButton_add.clicked.connect(self.add_diaglogue)
+        self.pushButton_add.clicked.connect(self.add_dialogue)
         self.pushButton_search.clicked.connect(self.search)
         # self.tableWidget.cellPressed.connect(self.select)
         self.tableWidget.selectionModel().selectionChanged.connect(self.select)
@@ -62,7 +62,7 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
         else:
             self.label_status_msg.setText('搜索结果为空')
 
-    def add_diaglogue(self):
+    def add_dialogue(self):
         filenames, _ = QFileDialog.getOpenFileNames(self, '追加对话文件', './')
 
         if filenames:

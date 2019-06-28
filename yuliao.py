@@ -68,15 +68,15 @@ class Dialogue:
             print('no country!', self.fpath)
 
 
-def gen_filepaths(dirpath):
-    '''
+def gen_filepaths(dir_path):
+    """
     生成文件列表
-    '''
+    """
     filepath_list = []
-    for dirpath, dirnames, filenames in os.walk(dirpath):
+    for dir_path, dirnames, filenames in os.walk(dir_path):
         for filename in filenames:
             if filename.split('.')[-1] == 'txt':
-                fpath = os.path.join(dirpath, filename)
+                fpath = os.path.join(dir_path, filename)
                 filepath_list.append(fpath)
     return filepath_list
 
@@ -95,9 +95,9 @@ def gen_dialogues(filepath_list):
 
 
 def count_countries(dialogues):
-    '''
+    """
     统计所有出现的国家
-    '''
+    """
     countries = []
     for dialogue in dialogues:
         countries.extend(dialogue.country.values())
@@ -120,9 +120,11 @@ def describe_dialogues(dialogues):
 
 
 def count_word_from_country(dialogues):
-    '''
+    """
     统计每个国家对话的字数
-    '''
+    :param dialogues: 对话list
+    :return:
+    """
     from collections import defaultdict
     word_from_country = defaultdict(lambda: 0)  # 统计 每个国家的对话的字数, 默认 0
 
@@ -132,10 +134,11 @@ def count_word_from_country(dialogues):
             word_from_country[country] += len(line.content)
     return word_from_country
 
+
 def check_country(dialogues):
-    '''
+    """
     检查国家是否完整
-    '''
+    """
     for dialogue in dialogues:
         A = set(dialogue.data.n_p)
         B = set(dialogue.country)
@@ -163,12 +166,10 @@ def find_word(dialogues, word, include=None, exclude=[]):
 
                 result = pd.DataFrame([[country, name,
                                         dialogue.fpath, line.content, dia_index, line.name]],
-                                      columns=['country', 'name', 'file', 'content','dia_index','index'])
+                                      columns=['country', 'name', 'file', 'content', 'dia_index', 'index'])
                 results_list.append(result)
     if results_list:
         results = pd.concat(results_list, ignore_index=True)
         return results
     else:
         return None
-
-
