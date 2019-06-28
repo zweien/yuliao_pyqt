@@ -51,8 +51,6 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
         self.actionExcel.triggered.connect(self.save_to_excel)
 
 
-
-
     def save_to_excel(self):
         if self.results is not None:
             filename, _ = QFileDialog.getSaveFileName(self, '搜索结果导出', './', 'excel (*.xlsx);;所有文件 (*)')
