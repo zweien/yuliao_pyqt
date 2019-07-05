@@ -211,7 +211,7 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
         self.status_update()
 
     def delete(self):
-        res = QMessageBox.warning(self, "注意", "删除可不能恢复了哦！",
+        res = QMessageBox.warning(self, "注意！", "删除可不能恢复了哦！",
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if res == QMessageBox.Yes:
             current_row = self.tableWidget.currentRow()
