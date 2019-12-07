@@ -60,6 +60,8 @@ class Dialogue:
                             else:
                                 country = m
                                 name = country + n_p
+                                if country == '老师':
+                                    country == '中国'
                             self.country[n_p] = country
                             self.name[n_p] = name
             #             print({'n_p':n_p, 'content':line})
@@ -133,7 +135,7 @@ def count_word_from_country(dialogues):
         for line in dialogue:
             country = dialogue.country[line.n_p]
             word_from_country[country] += len(line.content)
-    return word_from_country
+    return pd.Series(word_from_country)
 
 
 def check_country(dialogues):

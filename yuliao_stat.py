@@ -56,6 +56,9 @@ class Ui_Dialog(object):
         self.label_foreign = QtWidgets.QLabel(self.gridLayoutWidget)
         self.label_foreign.setObjectName("label_foreign")
         self.gridLayout.addWidget(self.label_foreign, 2, 1, 1, 1)
+        self.pushButtonBar = QtWidgets.QPushButton(Dialog)
+        self.pushButtonBar.setGeometry(QtCore.QRect(640, 300, 112, 34))
+        self.pushButtonBar.setObjectName("pushButtonBar")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -76,3 +79,4 @@ class Ui_Dialog(object):
         self.label_china.setText(_translate("Dialog", "0"))
         self.label_3.setText(_translate("Dialog", "其它："))
         self.label_foreign.setText(_translate("Dialog", "0"))
+        self.pushButtonBar.setText(_translate("Dialog", "柱状图"))

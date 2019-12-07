@@ -1,4 +1,4 @@
-__version__ = 1.2
+__version__ = '1.2.1'
 __date__ = '20191207'
 __author__ = 'zweien'
 
@@ -13,6 +13,9 @@ from PyQt5.QtGui import QIcon
 
 from yuliao import *
 
+DELETE_CONFIRM = False
+
+
 class StatWindow(QMainWindow, yuliao_stat.Ui_Dialog):
     def __init__(self, parent=None, dialogues=None):
         super().__init__(parent)
@@ -20,12 +23,12 @@ class StatWindow(QMainWindow, yuliao_stat.Ui_Dialog):
         if dialogues is None or len(dialogues) == 0:
             return
         countries = pd.Series(count_countries(dialogues))
-        des_df = describe_dialogues(dialogues)
-        people_country = countries.value_counts()
-        word_country = count_word_from_country(dialogues)
 
-        for line, (country, num_people) in enumerate(people_country.iteritems()):
-            num_word = word_country[country]
+        self.people_country = countries.value_counts()
+        self.word_country = count_word_from_country(dialogues)
+
+        for line, (country, num_people) in enumerate(self.people_country.iteritems()):
+            num_word = self.word_country[country]
             self.tableWidget.insertRow(line)
 
             country_item = QTableWidgetItem(country)
@@ -37,14 +40,26 @@ class StatWindow(QMainWindow, yuliao_stat.Ui_Dialog):
             word_item = QTableWidgetItem(str(num_word))
             self.tableWidget.setItem(line, 2, word_item)
 
-        total_word = sum(word_country.values())
-        china_word = word_country['中国']
+        total_word = sum(self.word_country.values)
+        china_word = self.word_country['中国']
         foreign_word = total_word - china_word
 
         self.label_china.setText(str(china_word))
         self.label_foreign.setText(str(foreign_word))
         self.label_total.setText(str(total_word))
 
+        self.pushButtonBar.clicked.connect(self.plot_bar)
+
+    def plot_bar(self):
+        try:
+            import matplotlib.pyplot as plt
+            plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
+            plt.rcParams['axes.unicode_minus'] = False
+            self.word_country.plot.bar()
+            plt.show()
+        except:
+            pass
+        
 
 
 class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
@@ -83,6 +98,7 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
         self.tableWidget.selectionModel().selectionChanged.connect(self.select)
         # self.tableWidget.verticalHeader().sectionClicked.connect(self.select)
         self.pushButton_delete.clicked.connect(self.delete)
+        self.pushButton_delete.setShortcut('D')
         self.pushButton_saveDialog.clicked.connect(self.save_dialogue)
         self.textEdit.textChanged.connect(self.text_changed)
         self.actionSave.triggered.connect(self.save_dialogues)
@@ -260,22 +276,25 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
         self.status_update()
 
     def delete(self):
-        res = QMessageBox.warning(self, "注意！", "删除可不能恢复了哦！",
+        if DELETE_CONFIRM:
+            res = QMessageBox.warning(self, "注意！", "删除可不能恢复了哦！",
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-        if res == QMessageBox.Yes:
-            current_row = self.tableWidget.currentRow()
-            selections = self.tableWidget.selectionModel()
-            selected_list = selections.selectedRows()
-            rows = []
-            for r in selected_list:
-                rows.append(r.row())
-            if len(rows) == 0:
-                rows.append(current_row)
-            self.remove_rows(rows)
-            self.textEdit.clear()
-            self.select_row = None
-            self.select_index = None
-            self.select_dia_index = None
+            if res == QMessageBox.No:
+                return
+
+        current_row = self.tableWidget.currentRow()
+        selections = self.tableWidget.selectionModel()
+        selected_list = selections.selectedRows()
+        rows = []
+        for r in selected_list:
+            rows.append(r.row())
+        if len(rows) == 0:
+            rows.append(current_row)
+        self.remove_rows(rows)
+        self.textEdit.clear()
+        self.select_row = None
+        self.select_index = None
+        self.select_dia_index = None
 
     def show_table(self, results):
         table_rows = self.tableWidget.rowCount()

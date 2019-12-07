@@ -182,7 +182,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "包括国家"))
         self.label_4.setText(_translate("MainWindow", "去除国家"))
         self.pushButton_search.setText(_translate("MainWindow", "搜索"))
-        self.pushButton_delete.setText(_translate("MainWindow", "删除"))
+        self.pushButton_delete.setText(_translate("MainWindow", "删除(D)"))
         self.pushButton_saveDialog.setText(_translate("MainWindow", "保存修改"))
         self.pushButton.setText(_translate("MainWindow", "退出"))
         item = self.tableWidget.horizontalHeaderItem(0)
