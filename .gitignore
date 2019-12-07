@@ -1,0 +1,6 @@
+# Created by .ignore support plugin (hsz.mobi)
+venv
+*.zip
+__pycache__
+.idea
+.ipynb_checkpoints

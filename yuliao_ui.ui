@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>语料库 v1.1</string>
+   <string>语料库</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -33,7 +33,7 @@
       <item>
        <widget class="QLineEdit" name="lineEdit">
         <property name="text">
-         <string>E:/study/yuliao/角色扮演</string>
+         <string/>
         </property>
         <property name="placeholderText">
          <string>语料目录</string>
@@ -299,7 +299,7 @@
         </attribute>
         <column>
          <property name="text">
-          <string>国家</string>
+          <string>国家/地区</string>
          </property>
         </column>
         <column>
@@ -357,6 +357,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionLoad"/>
     <addaction name="actionSave"/>
     <addaction name="actionExcel"/>
+    <addaction name="actionStat"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -386,6 +387,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionExcel">
    <property name="text">
     <string>搜索结果导出excel</string>
+   </property>
+  </action>
+  <action name="actionStat">
+   <property name="text">
+    <string>统计</string>
    </property>
   </action>
  </widget>

@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'yuliao_ui.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.12.3
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -24,6 +26,7 @@ class Ui_MainWindow(object):
         self.label.setObjectName("label")
         self.horizontalLayout_gen.addWidget(self.label)
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit.setText("")
         self.lineEdit.setObjectName("lineEdit")
         self.horizontalLayout_gen.addWidget(self.lineEdit)
         self.toolButton = QtWidgets.QToolButton(self.centralwidget)
@@ -151,9 +154,12 @@ class Ui_MainWindow(object):
         self.actionLoad.setObjectName("actionLoad")
         self.actionExcel = QtWidgets.QAction(MainWindow)
         self.actionExcel.setObjectName("actionExcel")
+        self.actionStat = QtWidgets.QAction(MainWindow)
+        self.actionStat.setObjectName("actionStat")
         self.menu.addAction(self.actionLoad)
         self.menu.addAction(self.actionSave)
         self.menu.addAction(self.actionExcel)
+        self.menu.addAction(self.actionStat)
         self.menu.addSeparator()
         self.menu.addAction(self.actionQuit)
         self.menuBar.addAction(self.menu.menuAction())
@@ -164,9 +170,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "语料库 v1.1"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "语料库"))
         self.label.setText(_translate("MainWindow", "语料目录"))
-        self.lineEdit.setText(_translate("MainWindow", "E:/study/yuliao/角色扮演"))
         self.lineEdit.setPlaceholderText(_translate("MainWindow", "语料目录"))
         self.toolButton.setText(_translate("MainWindow", "浏览"))
         self.pushButton_read.setText(_translate("MainWindow", "读取语料"))
@@ -181,7 +186,7 @@ class Ui_MainWindow(object):
         self.pushButton_saveDialog.setText(_translate("MainWindow", "保存修改"))
         self.pushButton.setText(_translate("MainWindow", "退出"))
         item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "国家"))
+        item.setText(_translate("MainWindow", "国家/地区"))
         item = self.tableWidget.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "姓名"))
         item = self.tableWidget.horizontalHeaderItem(2)
@@ -199,4 +204,4 @@ class Ui_MainWindow(object):
         self.actionQuit.setText(_translate("MainWindow", "退出"))
         self.actionLoad.setText(_translate("MainWindow", "打开"))
         self.actionExcel.setText(_translate("MainWindow", "搜索结果导出excel"))
-
+        self.actionStat.setText(_translate("MainWindow", "统计"))

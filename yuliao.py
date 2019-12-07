@@ -19,6 +19,7 @@ class Dialogue:
         '''
         param fpath: 单个对话文件path
         '''
+        print(fpath)
         with open(fpath) as f:
             raw_txt = f.read().replace(' ', '')
             self.count = len(raw_txt)

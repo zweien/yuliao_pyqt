@@ -1,18 +1,58 @@
+__version__ = 1.2
+__date__ = '20191207'
+__author__ = 'zweien'
+
 import sys, os, pickle
-import yuliao_ui # UI from QtDesigner
+import yuliao_ui,  yuliao_stat  # UI from QtDesigner
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow,\
     QMessageBox,QFileDialog,QProgressDialog, \
     QTableWidgetItem,QHeaderView,QTextEdit, QLabel
-
+from PyQt5.QtGui import QIcon
 
 from yuliao import *
+
+class StatWindow(QMainWindow, yuliao_stat.Ui_Dialog):
+    def __init__(self, parent=None, dialogues=None):
+        super().__init__(parent)
+        self.setupUi(self)
+        if dialogues is None or len(dialogues) == 0:
+            return
+        countries = pd.Series(count_countries(dialogues))
+        des_df = describe_dialogues(dialogues)
+        people_country = countries.value_counts()
+        word_country = count_word_from_country(dialogues)
+
+        for line, (country, num_people) in enumerate(people_country.iteritems()):
+            num_word = word_country[country]
+            self.tableWidget.insertRow(line)
+
+            country_item = QTableWidgetItem(country)
+            self.tableWidget.setItem(line, 0, country_item)
+
+            people_item = QTableWidgetItem(str(num_people))
+            self.tableWidget.setItem(line, 1, people_item)
+
+            word_item = QTableWidgetItem(str(num_word))
+            self.tableWidget.setItem(line, 2, word_item)
+
+        total_word = sum(word_country.values())
+        china_word = word_country['中国']
+        foreign_word = total_word - china_word
+
+        self.label_china.setText(str(china_word))
+        self.label_foreign.setText(str(foreign_word))
+        self.label_total.setText(str(total_word))
+
+
 
 class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
     def __init__(self, parent=None):
         super(myWindow, self).__init__(parent)
         self.setupUi(self)
+        self.setWindowTitle(f'语料库 {__version__}')
+        self.setWindowIcon(QIcon('./baby.ico'))
 
         self.dialogues = []
         self.results = None
@@ -38,7 +78,7 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
         self.toolButton.clicked.connect(self.choose_dir)
         self.pushButton_read.clicked.connect(self.generate)
         self.pushButton_add.clicked.connect(self.add_dialogue)
-        self.pushButton_search.clicked.connect(self.search)
+        self.pushButton_search.clicked.connect(lambda: self.search(refresh=True))
         # self.tableWidget.cellPressed.connect(self.select)
         self.tableWidget.selectionModel().selectionChanged.connect(self.select)
         # self.tableWidget.verticalHeader().sectionClicked.connect(self.select)
@@ -49,6 +89,13 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
         self.actionLoad.triggered.connect(self.load_dialogues)
         self.actionQuit.triggered.connect(self.close)
         self.actionExcel.triggered.connect(self.save_to_excel)
+        self.actionStat.triggered.connect(self.stat)
+
+
+    def stat(self):
+
+        stat_window = StatWindow(self, self.dialogues)
+        stat_window.show()
 
 
     def save_to_excel(self):
@@ -179,15 +226,17 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
 
         self.results = find_word(self.dialogues, self.word, include=include, exclude=exclude)
 
-        if refresh:
-            self.textEdit.clear()
+
         if self.results is not None:
             self.status_update()
-
-            self.show_table(self.results)
         else:
             QMessageBox.warning(self, "提示", "无匹配")
             self.label_status_msg.setText('无匹配!')
+
+        self.show_table(self.results)
+
+        if refresh:
+            self.textEdit.clear()
 
     def remove_rows(self, rows):
         # print("删除行：", rows)
@@ -234,7 +283,8 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
             # print('remove')
             for row in range(table_rows, -1, -1): #逆序删除！！
                 self.tableWidget.removeRow(row)
-
+        if results is None:
+            return
         for i, line in results.iterrows():
             country = line.country
             name = line['name']
