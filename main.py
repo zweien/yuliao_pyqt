@@ -99,6 +99,7 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
         # self.tableWidget.verticalHeader().sectionClicked.connect(self.select)
         self.pushButton_delete.clicked.connect(self.delete)
         self.pushButton_delete.setShortcut('D')
+        # self.pushButton_delete.setShortcut('Ctrl+D')
         self.pushButton_saveDialog.clicked.connect(self.save_dialogue)
         self.textEdit.textChanged.connect(self.text_changed)
         self.actionSave.triggered.connect(self.save_dialogues)

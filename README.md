@@ -32,3 +32,5 @@
 - 20191207
     - fix bug: 搜索得到结果后，再次搜索为空时，出错
     - add fun: 增加统计功能
+    - add fun: plot bar
+    - add fun: delete shortcut
