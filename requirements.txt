@@ -1,0 +1,4 @@
+python>=3.6
+pyqt5>=5.12
+pandas
+matplotlib
