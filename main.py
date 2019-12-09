@@ -13,7 +13,7 @@ from PyQt5.QtGui import QIcon
 
 from yuliao import *
 
-DELETE_CONFIRM = False
+DELETE_CONFIRM = False  ## 删除是否需要确认
 
 
 class StatWindow(QMainWindow, yuliao_stat.Ui_Dialog):
@@ -374,6 +374,6 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
 ###################################################
 # main loop
 app = QApplication(sys.argv)
-mainw = myWindow()
-mainw.show()
+main_window = myWindow()
+main_window.show()
 sys.exit(app.exec_())
