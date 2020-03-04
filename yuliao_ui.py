@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'yuliao_ui.ui'
+# Form implementation generated from reading ui file 'd:\work\yuliao_pyqt\yuliao_ui.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.3
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -136,7 +136,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menuBar = QtWidgets.QMenuBar(MainWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 950, 30))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 950, 26))
         self.menuBar.setObjectName("menuBar")
         self.menu = QtWidgets.QMenu(self.menuBar)
         self.menu.setObjectName("menu")
@@ -156,10 +156,12 @@ class Ui_MainWindow(object):
         self.actionExcel.setObjectName("actionExcel")
         self.actionStat = QtWidgets.QAction(MainWindow)
         self.actionStat.setObjectName("actionStat")
+        self.actionAbout = QtWidgets.QAction(MainWindow)
+        self.actionAbout.setObjectName("actionAbout")
         self.menu.addAction(self.actionLoad)
         self.menu.addAction(self.actionSave)
         self.menu.addAction(self.actionExcel)
-        self.menu.addAction(self.actionStat)
+        self.menu.addAction(self.actionAbout)
         self.menu.addSeparator()
         self.menu.addAction(self.actionQuit)
         self.menuBar.addAction(self.menu.menuAction())
@@ -205,3 +207,4 @@ class Ui_MainWindow(object):
         self.actionLoad.setText(_translate("MainWindow", "打开"))
         self.actionExcel.setText(_translate("MainWindow", "搜索结果导出excel"))
         self.actionStat.setText(_translate("MainWindow", "统计"))
+        self.actionAbout.setText(_translate("MainWindow", "关于"))

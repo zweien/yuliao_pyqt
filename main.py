@@ -1,6 +1,6 @@
 __version__ = '1.2.1'
 __date__ = '20191207'
-__author__ = 'zweien'
+__author__ = 'zweien & Mu Lei'
 
 import sys, os, pickle
 import yuliao_ui,  yuliao_stat  # UI from QtDesigner
@@ -109,7 +109,11 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
         self.actionQuit.triggered.connect(self.close)
         self.actionExcel.triggered.connect(self.save_to_excel)
         self.actionStat.triggered.connect(self.stat)
+        self.actionAbout.triggered.connect(self.about)
 
+    def about(self):
+        mesg = f'语料分析工具 v{__version__}\n© Zweien & Mu Lei. All rights reserved\nLicence under GNU GPL-3.0'
+        QMessageBox.information(self, '关于', mesg)
 
     def stat(self):
 
