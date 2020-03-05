@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>统计结果</string>
   </property>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
@@ -111,19 +111,19 @@
     </item>
    </layout>
   </widget>
-     <widget class="QPushButton" name="pushButtonBar">
-         <property name="geometry">
-             <rect>
-                 <x>640</x>
-                 <y>300</y>
-                 <width>112</width>
-                 <height>34</height>
-             </rect>
-         </property>
-         <property name="text">
-             <string>柱状图</string>
-         </property>
-     </widget>
+  <widget class="QPushButton" name="pushButtonBar">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>300</y>
+     <width>112</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>柱状图</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

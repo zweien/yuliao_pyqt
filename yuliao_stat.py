@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'yuliao_stat.ui'
+# Form implementation generated from reading ui file 'd:\work\yuliao_pyqt\yuliao_stat.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.3
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -65,7 +65,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "统计结果"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("Dialog", "国家/地区"))
         item = self.tableWidget.horizontalHeaderItem(1)

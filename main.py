@@ -1,6 +1,6 @@
 __version__ = '1.2.1'
 __date__ = '20191207'
-__author__ = 'zweien & Mu Lei'
+__author__ = 'Zweien & Mu Lei'
 
 import sys, os, pickle
 import yuliao_ui,  yuliao_stat  # UI from QtDesigner

@@ -357,6 +357,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionLoad"/>
     <addaction name="actionSave"/>
     <addaction name="actionExcel"/>
+    <addaction name="actionStat"/>
     <addaction name="actionAbout"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>

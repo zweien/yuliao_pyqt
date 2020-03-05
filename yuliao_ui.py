@@ -161,6 +161,7 @@ class Ui_MainWindow(object):
         self.menu.addAction(self.actionLoad)
         self.menu.addAction(self.actionSave)
         self.menu.addAction(self.actionExcel)
+        self.menu.addAction(self.actionStat)
         self.menu.addAction(self.actionAbout)
         self.menu.addSeparator()
         self.menu.addAction(self.actionQuit)
