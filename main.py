@@ -112,7 +112,7 @@ class myWindow(QMainWindow, yuliao_ui.Ui_MainWindow):
         self.actionAbout.triggered.connect(self.about)
 
     def about(self):
-        mesg = f'语料分析工具 v{__version__}\n© Zweien & Mu Lei. All rights reserved\nLicence under GNU GPL-3.0'
+        mesg = f'语料分析工具 v{__version__}\n© Zweien & Mu Lei. All rights reserved.\nLicence under GNU GPL-3.0'
         QMessageBox.information(self, '关于', mesg)
 
     def stat(self):
